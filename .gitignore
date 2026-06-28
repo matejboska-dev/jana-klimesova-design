@@ -22,4 +22,4 @@ Thumbs.db
 
 # TypeScript build cache and configs
 *.tsbuildinfo
-*.d.ts
+vite.config.d.ts
