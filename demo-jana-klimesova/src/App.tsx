@@ -426,11 +426,11 @@ function Hero({ ready }: HeroProps) {
       {/* ── Content wrapper ── */}
       <motion.div
         className={[
-          'relative z-10 px-6 lg:px-14 xl:px-20 pb-10 lg:pb-0',
+          'relative z-10 px-6 lg:px-14 xl:px-20 pb-10 lg:pb-12',
           /* mobile: natural flow, white bg */
           'pt-6 bg-white',
           /* desktop: full-height cinematic */
-          'lg:pt-28 lg:bg-transparent lg:flex lg:flex-col lg:justify-between lg:min-h-[100svh]',
+          'lg:pt-20 lg:bg-transparent lg:flex lg:flex-col lg:justify-between lg:min-h-[100svh]',
         ].join(' ')}
         variants={stagger}
         initial="hidden"
@@ -501,7 +501,7 @@ function Hero({ ready }: HeroProps) {
           <h1
             className="relative font-display font-extrabold uppercase leading-none tracking-[-0.03em] select-none text-black"
             style={{
-              fontSize: 'clamp(2.8rem, 10.5vw, 11rem)',
+              fontSize: 'clamp(2.8rem, 12vh, 9.5rem)',
               lineHeight: 0.85,
               textShadow: '0 0 80px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)',
             }}
