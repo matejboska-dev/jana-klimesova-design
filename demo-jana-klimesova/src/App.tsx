@@ -568,8 +568,8 @@ export default function App() {
       </section>
 
       {/* ─── STATS ─── */}
-      <section className="bg-white border-b border-[#E8EEF5]">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-20">
+      <section className="bg-white border-b border-[#E8EEF5] lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center py-20 lg:py-0">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#E8EEF5]">
             {stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 0.08}>
@@ -592,8 +592,8 @@ export default function App() {
       </section>
 
       {/* ─── O MNĚ ─── */}
-      <section id="o-mne" className="py-28 bg-offwhite">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
+      <section id="o-mne" className="py-28 lg:py-0 bg-offwhite lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
 
           {/* image */}
           <Reveal from="left" className="relative order-2 lg:order-1">
@@ -655,8 +655,8 @@ export default function App() {
       </section>
 
       {/* ─── JSEM ODSUD — interactive map ─── */}
-      <section id="region" className="py-28 bg-white border-t border-[#E8EEF5] overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+      <section id="region" className="py-28 lg:py-0 bg-white border-t border-[#E8EEF5] overflow-hidden lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-4">
               <Reveal from="left">
@@ -702,7 +702,7 @@ export default function App() {
       </section>
 
       {/* ─── PŘÍSTUP — dark section ─── */}
-      <section id="pristup" className="relative py-28 bg-navy text-white overflow-hidden">
+      <section id="pristup" className="relative py-28 lg:py-0 bg-navy text-white overflow-hidden lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
         {/* background watermark — parallax drift */}
         <ParallaxLayer
           range={[-40, 40]}
@@ -712,7 +712,7 @@ export default function App() {
           KV
         </ParallaxLayer>
 
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 items-center relative">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 items-center relative">
 
           <div className="lg:col-span-7">
             <Reveal from="left">
@@ -784,8 +784,8 @@ export default function App() {
       </section>
 
       {/* ─── VY vs. SE MNOU — split compare ─── */}
-      <section className="py-28 bg-white overflow-hidden">
-        <div className="max-w-[1180px] mx-auto px-6 lg:px-10">
+      <section className="py-28 lg:py-0 bg-white overflow-hidden lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
+        <div className="w-full max-w-[1180px] mx-auto px-6 lg:px-10">
           <Reveal className="max-w-2xl mb-12">
             <Eyebrow>Vy sami vs. se mnou</Eyebrow>
             <h2 className="text-h2 font-extrabold text-navy leading-tight tracking-tight">
@@ -804,8 +804,8 @@ export default function App() {
       </section>
 
       {/* ─── POSTUP ─── */}
-      <section id="postup" className="py-28 bg-offwhite">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+      <section id="postup" className="py-28 lg:py-0 bg-offwhite lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10">
           <Reveal className="max-w-2xl mb-16">
             <Eyebrow>Jak to probíhá</Eyebrow>
             <h2 className="text-h2 font-extrabold text-navy leading-tight tracking-tight">
@@ -891,8 +891,8 @@ export default function App() {
       </section>
 
       {/* ─── NABÍDKA ─── */}
-      <section id="nabidka" className="py-28 bg-white border-y border-[#CED7E4]">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+      <section id="nabidka" className="py-28 lg:py-0 bg-white border-y border-[#CED7E4] lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10">
           <Reveal className="flex items-end justify-between mb-12 flex-wrap gap-5">
             <div className="max-w-xl">
               <Eyebrow>Aktuální nabídka</Eyebrow>
@@ -946,8 +946,8 @@ export default function App() {
       </section>
 
       {/* ─── REFERENCE ─── */}
-      <section id="reference" className="py-28 bg-offwhite overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 mb-14">
+      <section id="reference" className="py-28 lg:py-0 bg-offwhite overflow-hidden lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10 mb-14">
           <Reveal className="max-w-xl">
             <Eyebrow>Reference</Eyebrow>
             <h2 className="text-h2 font-extrabold text-navy leading-tight tracking-tight">
@@ -967,7 +967,7 @@ export default function App() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="py-24 bg-rose text-white relative overflow-hidden">
+      <section className="py-24 lg:py-0 bg-rose text-white relative overflow-hidden lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(255,255,255,0.1),_transparent_60%)]" />
         {/* watermark text */}
         <div
@@ -1013,8 +1013,8 @@ export default function App() {
       </section>
 
       {/* ─── KONTAKT ─── */}
-      <section id="kontakt" className="py-28 bg-white">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16">
+      <section id="kontakt" className="py-28 lg:py-0 bg-white lg:min-h-[100svh] lg:flex lg:flex-col lg:justify-center">
+        <div className="w-full max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16">
 
           {/* contact info */}
           <div>
