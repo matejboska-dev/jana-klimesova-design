@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #222222;
+}
+
+h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+::selection {
+  background: #D98A9B;
+  color: #ffffff;
+}
+
+/* rose scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAFA;
+}
+::-webkit-scrollbar-thumb {
+  background: #CED7E4;
+  border-radius: 999px;
+  border: 2px solid #FAFAFA;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D98A9B;
+}
+
+/* clip reveal for hero image */
+.clip-reveal {
+  animation: clip-reveal 1.2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+@keyframes clip-reveal {
+  from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+  to   { clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%); }
+}
+
+/* scroll cue pulse */
+.scroll-pulse {
+  animation: pulseLine 2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes pulseLine {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+  50%       { transform: scaleY(1);   opacity: 1; }
+}
+
+/* testimonial auto-scroll */
+.testimonial-slider {
+  animation: testimonial-scroll 38s linear infinite;
+  width: max-content;
+}
+.testimonial-slider:hover {
+  animation-play-state: paused;
+}
+@keyframes testimonial-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* step card number flip */
+.step-number {
+  transition: color 0.3s ease;
+}

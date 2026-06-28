@@ -1,0 +1,21 @@
+# Node dependencies
+**/node_modules/
+**/dist/
+**/build/
+
+# IDE files and caches
+.claude/
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Zip files in root
+*.zip
