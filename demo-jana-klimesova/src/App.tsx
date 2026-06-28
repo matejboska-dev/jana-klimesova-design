@@ -430,7 +430,7 @@ function Hero({ ready }: HeroProps) {
           /* mobile: natural flow, white bg */
           'pt-6 bg-white',
           /* desktop: full-height cinematic */
-          'lg:pt-20 lg:bg-transparent lg:flex lg:flex-col lg:justify-between lg:min-h-[100svh]',
+          'lg:pt-32 lg:bg-transparent lg:flex lg:flex-col lg:justify-between lg:min-h-[100svh]',
         ].join(' ')}
         variants={stagger}
         initial="hidden"
