@@ -1,5 +1,14 @@
 import { IconStar, IconQuote } from './Icons'
 
+interface Testimonial {
+  text: string
+  detail: string
+}
+
+interface TestimonialSliderProps {
+  testimonials: Testimonial[]
+}
+
 function Stars() {
   return (
     <div className="flex gap-0.5">
@@ -10,7 +19,7 @@ function Stars() {
   )
 }
 
-export default function TestimonialSlider({ testimonials }) {
+export default function TestimonialSlider({ testimonials }: TestimonialSliderProps) {
   const doubled = [...testimonials, ...testimonials]
 
   return (

@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { useInView, useReducedMotion } from 'motion/react'
 
+interface CountUpProps {
+  target: number
+  suffix?: string
+  prefix?: string
+  duration?: number
+}
+
 // counts from 0 to target when scrolled into view
-export default function CountUp({ target, suffix = '', prefix = '', duration = 1700 }) {
-  const ref = useRef(null)
+export default function CountUp({ target, suffix = '', prefix = '', duration = 1700 }: CountUpProps) {
+  const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const reduce = useReducedMotion()
   const [value, setValue] = useState(0)
@@ -14,9 +21,9 @@ export default function CountUp({ target, suffix = '', prefix = '', duration = 1
       setValue(target)
       return
     }
-    let raf
+    let raf: number
     const start = performance.now()
-    const tick = (now) => {
+    const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
       setValue(Math.round(eased * target))

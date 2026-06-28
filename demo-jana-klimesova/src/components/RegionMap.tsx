@@ -37,7 +37,7 @@ const pins = [
 ]
 
 export default function RegionMap() {
-  const [active, setActive] = useState(null)
+  const [active, setActive] = useState<number | null>(null)
   const reduce = useReducedMotion()
 
   return (
@@ -53,7 +53,7 @@ export default function RegionMap() {
           filter: 'grayscale(100%) brightness(0.95) contrast(1.15)',
           pointerEvents: 'none',
         }}
-        allowFullScreen=""
+        allowFullScreen={true}
         loading="lazy"
         referrerPolicy="strict-origin-when-cross-origin"
         title="Mapa Karlovy Vary"
@@ -124,5 +124,3 @@ export default function RegionMap() {
     </div>
   )
 }
-
-

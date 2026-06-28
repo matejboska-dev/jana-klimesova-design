@@ -1,7 +1,25 @@
 import { motion } from 'motion/react'
 import { IconPin, IconArrowUpRight } from './Icons'
 
-export default function PropertyCard({ img, type, place, area, price, tag, index = 0 }) {
+interface PropertyCardProps {
+  img: string
+  type: string
+  place: string
+  area: string
+  price: string
+  tag: string
+  index?: number
+}
+
+export default function PropertyCard({
+  img,
+  type,
+  place,
+  area,
+  price,
+  tag,
+  index = 0,
+}: PropertyCardProps) {
   return (
     <motion.article
       className="group relative overflow-hidden rounded-[24px] cursor-pointer"

@@ -2,7 +2,21 @@ import { useEffect, useState } from 'react'
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
-export default function TextScramble({ children, className = '', trigger = true, speed = 0.04, duration = 0.7 }) {
+interface TextScrambleProps {
+  children: string
+  className?: string
+  trigger?: boolean
+  speed?: number
+  duration?: number
+}
+
+export default function TextScramble({
+  children,
+  className = '',
+  trigger = true,
+  speed = 0.04,
+  duration = 0.7,
+}: TextScrambleProps) {
   const text = children
   const [display, setDisplay] = useState(text)
   const [running, setRunning] = useState(false)
@@ -16,7 +30,10 @@ export default function TextScramble({ children, className = '', trigger = true,
       const progress = step / steps
       let out = ''
       for (let i = 0; i < text.length; i++) {
-        if (text[i] === ' ') { out += ' '; continue }
+        if (text[i] === ' ') {
+          out += ' '
+          continue
+        }
         if (progress * text.length > i) {
           out += text[i]
         } else {
@@ -32,7 +49,7 @@ export default function TextScramble({ children, className = '', trigger = true,
       }
     }, speed * 1000)
     return () => clearInterval(id)
-  }, [trigger])
+  }, [trigger, duration, speed, text, running])
 
   return <span className={className}>{display}</span>
 }

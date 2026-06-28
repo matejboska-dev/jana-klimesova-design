@@ -1,5 +1,10 @@
+interface MarqueeProps {
+  items: string[]
+  className?: string
+}
+
 // seamless horizontal marquee of region names. duplicated track for loop.
-export default function Marquee({ items, className = '' }) {
+export default function Marquee({ items, className = '' }: MarqueeProps) {
   const row = [...items, ...items]
   return (
     <div className={`relative overflow-hidden ${className}`}>

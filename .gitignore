@@ -19,3 +19,7 @@ Thumbs.db
 
 # Zip files in root
 *.zip
+
+# TypeScript build cache and configs
+*.tsbuildinfo
+*.d.ts

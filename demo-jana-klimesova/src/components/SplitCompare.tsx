@@ -15,10 +15,10 @@ const chaosNotes = [
 
 export default function SplitCompare() {
   const [div, setDiv] = useState(50)
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const dragging = useRef(false)
 
-  const setFromX = (clientX) => {
+  const setFromX = (clientX: number) => {
     if (!ref.current) return
     const r = ref.current.getBoundingClientRect()
     const pctv = ((clientX - r.left) / r.width) * 100
@@ -26,8 +26,10 @@ export default function SplitCompare() {
   }
 
   useEffect(() => {
-    const move = (e) => dragging.current && setFromX(e.clientX)
-    const up = () => { dragging.current = false }
+    const move = (e: PointerEvent) => dragging.current && setFromX(e.clientX)
+    const up = () => {
+      dragging.current = false
+    }
     window.addEventListener('pointermove', move)
     window.addEventListener('pointerup', up)
     return () => {
@@ -41,11 +43,19 @@ export default function SplitCompare() {
       ref={ref}
       className="relative w-full aspect-[16/11] sm:aspect-[16/9] rounded-[30px] overflow-hidden shadow-card cursor-ew-resize select-none"
       style={{ touchAction: 'pan-y' }}
-      onPointerDown={(e) => { dragging.current = true; setFromX(e.clientX) }}
+      onPointerDown={(e) => {
+        dragging.current = true
+        setFromX(e.clientX)
+      }}
     >
       {/* ── CHAOS (bottom layer, full) ── */}
       <div className="absolute inset-0">
-        <img src={propKitchen2} alt="" className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.55]" draggable="false" />
+        <img
+          src={propKitchen2}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.55]"
+          draggable="false"
+        />
         <div className="absolute inset-0 bg-black/30" />
 
         <span className="absolute top-5 left-5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/60 border border-white/25 px-3 py-1.5 rounded-full">

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   AnimatePresence,
   motion,
@@ -20,7 +20,6 @@ import TestimonialSlider from './components/TestimonialSlider'
 import RegionMap from './components/RegionMap'
 import SplitCompare from './components/SplitCompare'
 import {
-  IconHome,
   IconCamera,
   IconDoc,
   IconKey,
@@ -35,7 +34,6 @@ import {
   IconQuote,
 } from './components/Icons'
 
-import portrait from './assets/jana-portrait.jpg'
 import kvStreet from './assets/kv-street.jpg'
 import propDining from './assets/prop-dining.jpg'
 import propCottage from './assets/prop-cottage.jpg'
@@ -67,7 +65,14 @@ const stats = [
   { value: 6, suffix: '', label: 'Doporučení od prodávajících' },
 ]
 
-const steps = [
+interface StepItem {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  number: string
+  title: string
+  text: string
+}
+
+const steps: StepItem[] = [
   {
     icon: IconCompass,
     number: '01',
@@ -150,7 +155,11 @@ const testimonials = [
 ]
 
 /* ---------- HELPERS ---------- */
-function Stars({ className = '' }) {
+interface StarsProps {
+  className?: string
+}
+
+function Stars({ className = '' }: StarsProps) {
   return (
     <div className={`flex gap-0.5 text-rose ${className}`}>
       {[0, 1, 2, 3, 4].map((i) => (
@@ -160,7 +169,12 @@ function Stars({ className = '' }) {
   )
 }
 
-function Eyebrow({ children, light = false }) {
+interface EyebrowProps {
+  children: React.ReactNode
+  light?: boolean
+}
+
+function Eyebrow({ children, light = false }: EyebrowProps) {
   return (
     <div className="flex items-center gap-3 mb-6">
       <span className={`h-px w-9 ${light ? 'bg-rose/60' : 'bg-rose'}`} />
@@ -176,7 +190,12 @@ function Eyebrow({ children, light = false }) {
 }
 
 /* ---------- NAV LINK with scramble ---------- */
-function NavLink({ href, children }) {
+interface NavLinkProps {
+  href: string
+  children: string
+}
+
+function NavLink({ href, children }: NavLinkProps) {
   const [hovered, setHovered] = useState(false)
   return (
     <a
@@ -290,8 +309,8 @@ function Nav() {
 /* ---------- PARALLAX HELPERS ---------- */
 const SPRING = { stiffness: 55, damping: 22, mass: 0.8 }
 
-function useParallax(range = [-30, 30]) {
-  const ref = useRef(null)
+function useParallax(range: [number, number] = [-30, 30]): [React.RefObject<HTMLDivElement | null>, any] {
+  const ref = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const raw = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : range)
@@ -299,7 +318,16 @@ function useParallax(range = [-30, 30]) {
   return [ref, y]
 }
 
-function ParallaxImage({ src, alt, className, style, range = [-25, 25], imgClassName }) {
+interface ParallaxImageProps {
+  src: string
+  alt: string
+  className?: string
+  style?: React.CSSProperties
+  range?: [number, number]
+  imgClassName?: string
+}
+
+function ParallaxImage({ src, alt, className, style, range = [-25, 25], imgClassName }: ParallaxImageProps) {
   const [ref, y] = useParallax(range)
   return (
     <div ref={ref} className={`overflow-hidden ${className ?? ''}`} style={style}>
@@ -308,7 +336,14 @@ function ParallaxImage({ src, alt, className, style, range = [-25, 25], imgClass
   )
 }
 
-function ParallaxLayer({ children, range = [-18, 18], className, style }) {
+interface ParallaxLayerProps {
+  children: React.ReactNode
+  range?: [number, number]
+  className?: string
+  style?: React.CSSProperties
+}
+
+function ParallaxLayer({ children, range = [-18, 18], className, style }: ParallaxLayerProps) {
   const [ref, y] = useParallax(range)
   return (
     <motion.div ref={ref} style={{ y, ...style }} className={className}>
@@ -318,7 +353,11 @@ function ParallaxLayer({ children, range = [-18, 18], className, style }) {
 }
 
 /* ---------- HERO ---------- */
-function Hero({ ready }) {
+interface HeroProps {
+  ready: boolean
+}
+
+function Hero({ ready }: HeroProps) {
   const reduce = useReducedMotion()
   const show = reduce ? true : ready
   const { scrollY } = useScroll()
@@ -332,15 +371,15 @@ function Hero({ ready }) {
   }
   const fadeUp = {
     hidden: { opacity: 0, y: 22 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.21, 0.47, 0.32, 0.98] } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.21, 0.47, 0.32, 0.98] as const } },
   }
 
-  const draw = (delay) => ({
+  const draw = (delay: number) => ({
     hidden: { pathLength: 0, opacity: 0 },
     show: {
       pathLength: 1,
       opacity: 1,
-      transition: { pathLength: { duration: 1.1, delay, ease: [0.45, 0, 0.55, 1] }, opacity: { duration: 0.01, delay } },
+      transition: { pathLength: { duration: 1.1, delay, ease: [0.45, 0, 0.55, 1] as const }, opacity: { duration: 0.01, delay } },
     },
   })
 
@@ -367,8 +406,6 @@ function Hero({ ready }) {
         </filter>
         <rect width="100%" height="100%" filter="url(#hero-grain)" opacity="0.06" />
       </svg>
-
-
 
       {/* ── MOBILE ONLY: portrait as inline image ── */}
       <motion.div
@@ -426,7 +463,7 @@ function Hero({ ready }) {
                 <motion.path
                   d="M2,5 C30,1 58,7 88,4 C118,1 148,7 178,4 C198,2 210,6 218,4"
                   stroke="#D98A9B" strokeWidth="2.2" strokeLinecap="round"
-                  variants={draw(0.9)}
+                  variants={draw(0.9) as any}
                 />
               </motion.svg>
             </span>
@@ -471,10 +508,6 @@ function Hero({ ready }) {
           >
             Jana<br />Klimešová
           </h1>
-
-
-
-
         </motion.div>
       </motion.div>
 
@@ -496,7 +529,7 @@ function Hero({ ready }) {
 export default function App() {
   const reduce = useReducedMotion()
   const [loading, setLoading] = useState(!reduce)
-  const [ready, setReady] = useState(reduce)
+  const [ready, setReady] = useState(!!reduce)
   const { scrollYProgress } = useScroll()
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
@@ -507,7 +540,7 @@ export default function App() {
     return () => clearTimeout(t)
   }, [loading])
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setSent(true)
   }
@@ -611,7 +644,7 @@ export default function App() {
                   'Osobní přístup ke každému',
                 ].map((t) => (
                   <div key={t} className="flex items-start gap-2.5 text-sm text-charcoal">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-rose flex-shrink-0" />
+                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-rose flex-shrink-0" />
                     {t}
                   </div>
                 ))}
@@ -873,7 +906,7 @@ export default function App() {
             <span className="text-sm text-muted font-medium">35 nemovitostí v nabídce</span>
           </Reveal>
 
-          {/* hover-reveal portrait cards from 21st.dev */}
+          {/* hover-reveal portrait cards */}
           <motion.div
             className="grid md:grid-cols-3 gap-5"
             initial="hidden"
@@ -927,7 +960,7 @@ export default function App() {
           </Reveal>
         </div>
 
-        {/* auto-scrolling infinite slider from 21st.dev */}
+        {/* auto-scrolling infinite slider */}
         <Reveal>
           <TestimonialSlider testimonials={testimonials} />
         </Reveal>
@@ -1140,7 +1173,16 @@ export default function App() {
 }
 
 /* ---------- FORM FIELDS ---------- */
-function DarkField({ label, value, onChange, type = 'text', required, placeholder }) {
+interface DarkFieldProps {
+  label: string
+  value: string
+  onChange: (v: string) => void
+  type?: string
+  required?: boolean
+  placeholder?: string
+}
+
+function DarkField({ label, value, onChange, type = 'text', required, placeholder }: DarkFieldProps) {
   return (
     <div>
       <label className="block text-sm font-medium text-offwhite mb-2">{label}</label>

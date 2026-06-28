@@ -1,8 +1,11 @@
 import { motion, useReducedMotion } from 'motion/react'
+import React from 'react'
 
 const EASE = [0.21, 0.47, 0.32, 0.98]
 
-const VARIANTS = {
+type RevealDirection = 'bottom' | 'left' | 'right' | 'scale' | 'clip'
+
+const VARIANTS: Record<RevealDirection, (y: number) => { hidden: any; show: any }> = {
   bottom: (y) => ({
     hidden: { opacity: 0, y },
     show:   { opacity: 1, y: 0 },
@@ -25,6 +28,17 @@ const VARIANTS = {
   }),
 }
 
+interface RevealProps {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+  duration?: number
+  y?: number
+  from?: RevealDirection
+  as?: string
+  margin?: string
+}
+
 export default function Reveal({
   children,
   className = '',
@@ -34,12 +48,12 @@ export default function Reveal({
   from = 'bottom',
   as = 'div',
   margin = '-80px',
-}) {
+}: RevealProps) {
   const reduce = useReducedMotion()
-  const MotionTag = motion[as] || motion.div
+  const MotionTag = (motion as any)[as] || motion.div
 
   if (reduce) {
-    const Tag = as
+    const Tag = as as any
     return <Tag className={className}>{children}</Tag>
   }
 
